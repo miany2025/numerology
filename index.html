@@ -1139,7 +1139,10 @@
                 console.log('📡 Response headers:', response.headers);
 
                 if (response.ok) {
-                    const data = await response.json();
+                    let data;
+try { data = await response.json(); }
+catch { data = await response.text(); }
+console.log("✅ n8n response:", data);
                     resultElement.textContent = '✅ Success! Check console for details.';
                     resultElement.style.color = '#10b981';
                     console.log('✅ n8n response:', data);
